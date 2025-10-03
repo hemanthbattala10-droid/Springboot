@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home</title>
+</head>
+<body>
+  <h1>Welcome</h1>
+
+  <div th:if="${#authorization.expression('isAuthenticated()')}">
+    <p>Welcome, <span th:text="${name ?: 'User'}">User</span>!</p>
+    <p>Your email: <span th:text="${email ?: 'unknown'}">unknown</span></p>
+    <p>Bearer Token: <span th:text="${token ?: 'not available'}">not available</span></p>
+    <a href="/logout">Logout</a>
+  </div>
+
+  <div th:unless="${#authorization.expression('isAuthenticated()')}">
+    <a href="/oauth2/authorization/okta">Login with Okta</a>
+  </div>
+</body>
+</html>

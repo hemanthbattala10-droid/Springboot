@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Secure Page</title></head>
+<body>
+  <h2>Secure Page</h2>
+  <p>Name: <span th:text="${name}"></span></p>
+  <p>Email: <span th:text="${email}"></span></p>
+  <p>Bearer Token: <code th:text="${token}"></code></p>
+  <a href="/logout">Logout</a>
+</body>
+</html>
+
