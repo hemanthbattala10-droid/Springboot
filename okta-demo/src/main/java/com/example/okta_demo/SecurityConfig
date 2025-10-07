@@ -1,9 +1,11 @@
 package com.example.okta_demo;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
 public class SecurityConfig {
 
     @Bean
@@ -13,7 +15,9 @@ public class SecurityConfig {
                 .requestMatchers("/", "/home").permitAll()
                 .anyRequest().authenticated()
             )
-            .oauth2Login(); // Enables /oauth2/authorization/{registrationId}
+            .oauth2Login(oauth -> oauth
+                .defaultSuccessUrl("/", true) // 👈 Redirect to home after login
+            );
         return http.build();
     }
 }
